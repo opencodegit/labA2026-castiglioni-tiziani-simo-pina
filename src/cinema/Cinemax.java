@@ -22,7 +22,7 @@ public class Cinemax {
 			//costruzione dello stream di caratteri
 			//FileReader frd = new FileReader("."+sep+"docs"+sep+"test.txt");
 			
-			File f = new File("."+sep+"docs"+sep+"test.txt");
+			File f = new File("."+sep+"data"+sep+"proiezioni.csv");
 			
 			//occorre resettare il reader!
 			BufferedReader bfr = new BufferedReader(new FileReader(f));
