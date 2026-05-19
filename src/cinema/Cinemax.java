@@ -16,15 +16,14 @@ public class Cinemax {
 		Palinsesto pal;
 		
 		String sep = File.separator;
+		
 		try {
-			
-			
 			//costruzione dello stream di caratteri
 			//FileReader frd = new FileReader("."+sep+"docs"+sep+"test.txt");
 			
 			File f = new File("."+sep+"data"+sep+"proiezioni.csv");
 			
-			//occorre resettare il reader!
+			//calcola il numero di righe nel file CSV
 			BufferedReader bfr = new BufferedReader(new FileReader(f));
 			String str;
 			int i = 0;
@@ -35,6 +34,8 @@ public class Cinemax {
 			
 			String [] dati = new String [i];
 			
+			// occorre resettare il reader!
+			// legge il file ".csv" riga per riga
 			BufferedReader bfr2 = new BufferedReader(new FileReader(f));
 			String str2;
 			int i2 = 0;
@@ -42,8 +43,7 @@ public class Cinemax {
 			while ((str2 = bfr2.readLine()) != null) {
 				dati[i2++] = str2;
 			}
-				
-			
+
 			// aggiungere proiezione
 			pal = new Palinsesto (dati);
 			
