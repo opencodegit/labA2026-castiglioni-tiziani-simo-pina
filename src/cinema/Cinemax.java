@@ -13,7 +13,7 @@ public class Cinemax {
 	public static void main(String[] args) {
 		
 		// palinsesto
-		Palinsesto pal;
+		Palinsesto pal, pal_oggi;
 		
 		String sep = File.separator;
 		
@@ -45,10 +45,10 @@ public class Cinemax {
 			}
 
 			// caricare i dati nel palinsesto
-			pal = new Palinsesto (dati);
+			pal = caricareDati(dati);
 			
 			// cercare proiezione con data odierna
-			Palinsesto pal_oggi = pal.cercaProiezione();
+			pal_oggi = pal.cercaProiezione();
 			
 			// stampa
 			// "Proiezione di " + pro.getData().toString() + pro.getTitolo()
@@ -71,6 +71,11 @@ public class Cinemax {
 		}
 		
 
+	}
+	
+	public static Palinsesto caricareDati (String [] dati) {
+		Palinsesto pal = new Palinsesto (dati);
+		return pal;
 	}
 
 	
