@@ -10,18 +10,40 @@ import java.io.IOException;
 
 public class Cinemax {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
+		Palinsesto pal, pal_oggi; 		// palinsesto
+		String dir = "data";			// directory
+		String f = "proiezioni.csv";	// file_name
+		String [] dati;					// array di proiezioni
+		String sep = File.separator;	// separatore legato al sistema operativo
+
+		// leggere i dati dal file proiezioni.csv
+		dati = leggereDati (sep, dir, f);
+
+		// caricare i dati nel palinsesto
+		pal = caricareDati(dati);
 		
-		// palinsesto
-		Palinsesto pal, pal_oggi;
+		// cercare proiezione con data odierna
+		pal_oggi = pal.cercaProiezione();
 		
-		String sep = File.separator;
-		
+		// stampa
+		// "Proiezione di " + pro.getData().toString() + pro.getTitolo()
+		// "Proiezione di 16-05-2026: Star Wars: The Mandalorian and Grogu"
+		if (pal_oggi == null)
+			System.err.println("Nessuna proiezione trovata per oggi");
+		else
+			System.out.println("Proiezione/i di oggi:");
+			for (Proiezione tmp : pal_oggi)
+				System.out.println(tmp.visualizzaProiezione());
+	}
+	
+	public static String [] leggereDati (String separatore, String directory, String file_name) {
+		String [] dati = null;
 		try {
 			//costruzione dello stream di caratteri
 			//FileReader frd = new FileReader("."+sep+"docs"+sep+"test.txt");
 			
-			File f = new File("."+sep+"data"+sep+"proiezioni.csv");
+			File f = new File("."+separatore+"data"+separatore+file_name);
 			
 			//calcola il numero di righe nel file CSV
 			BufferedReader bfr = new BufferedReader(new FileReader(f));
@@ -32,7 +54,7 @@ public class Cinemax {
 				i++;
 			}
 			
-			String [] dati = new String [i];
+			dati = new String [i];
 			
 			// occorre resettare il reader!
 			// legge il file ".csv" riga per riga
@@ -43,22 +65,6 @@ public class Cinemax {
 			while ((str2 = bfr2.readLine()) != null) {
 				dati[i2++] = str2;
 			}
-
-			// caricare i dati nel palinsesto
-			pal = caricareDati(dati);
-			
-			// cercare proiezione con data odierna
-			pal_oggi = pal.cercaProiezione();
-			
-			// stampa
-			// "Proiezione di " + pro.getData().toString() + pro.getTitolo()
-			// "Proiezione di 16-05-2026: Star Wars: The Mandalorian and Grogu"
-			if (pal_oggi == null)
-				System.err.println("Nessuna proiezione trovata per oggi");
-			else
-				System.out.println("Proiezione/i di oggi:");
-				for (Proiezione tmp : pal_oggi)
-					System.out.println(tmp.visualizzaProiezione());
 			
 			//chiusura dello stream
 			bfr.close();
@@ -70,9 +76,10 @@ public class Cinemax {
 			System.err.println("Errore I/O imprevisto :-(");
 		}
 		
-
+		
+		return dati;
 	}
-	
+
 	public static Palinsesto caricareDati (String [] dati) {
 		Palinsesto pal = new Palinsesto (dati);
 		return pal;
