@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MainLabA2026" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="cinema.Cinemax" />
+    <module name="labA2026-castiglioni-tiziani-simo-pina2" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -44,19 +44,21 @@ public class Cinemax {
 				dati[i2++] = str2;
 			}
 
-			// aggiungere proiezione
+			// caricare i dati nel palinsesto
 			pal = new Palinsesto (dati);
 			
 			// cercare proiezione con data odierna
-			Proiezione pro = pal.cercaProiezione();
+			Palinsesto pal_oggi = pal.cercaProiezione();
 			
 			// stampa
 			// "Proiezione di " + pro.getData().toString() + pro.getTitolo()
 			// "Proiezione di 16-05-2026: Star Wars: The Mandalorian and Grogu"
-			if (pro == null) 
-				System.err.println("Proiezione di oggi: Nessuna proiezione trovata");
+			if (pal_oggi == null)
+				System.err.println("Nessuna proiezione trovata per oggi");
 			else
-				System.out.println("Proiezione di oggi: " + pro.visualizzaProiezione());
+				System.out.println("Proiezione/i di oggi:");
+				for (Proiezione tmp : pal_oggi)
+					System.out.println(tmp.visualizzaProiezione());
 			
 			//chiusura dello stream
 			bfr.close();

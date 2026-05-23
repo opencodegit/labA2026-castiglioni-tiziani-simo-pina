@@ -20,15 +20,15 @@ public class Cinemax2 {
 		pal = new Palinsesto (dati);
 		
 		// cercare proiezione con data odierna
-		Proiezione pro = pal.cercaProiezione();
+		Palinsesto pal_oggi = pal.cercaProiezione();
 		
 		// stampa
 		// "Proiezione di " + pro.getData().toString() + pro.getTitolo()
 		// "Proiezione di 16-05-2026: Star Wars: The Mandalorian and Grogu"
-		if (pro == null) 
+		if (pal_oggi == null)
 			System.err.println("Proiezione di oggi: Nessuna proiezione trovata");
 		else
-			System.out.println("Proiezione di oggi: " + pro.visualizzaProiezione());
+			System.out.println("Proiezione di oggi: " + pal_oggi.toString());
 	}
 
 }

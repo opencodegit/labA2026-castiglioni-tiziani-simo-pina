@@ -1,8 +1,9 @@
 package cinema;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Palinsesto {
+public class Palinsesto implements Iterable <Proiezione>{
 
 	// CAMPI
 	private String nome_cinema;
@@ -10,13 +11,18 @@ public class Palinsesto {
 	
 	// COSTRUTTORI
 	public Palinsesto () {
-		nome_cinema = "Cinemax";
-		lista = new LinkedList <Proiezione> ();
+		this.nome_cinema = "Cinemax";
+		this.lista = new LinkedList <Proiezione> ();
+	}
+
+	public Palinsesto (String nome_cinema) {
+		this.nome_cinema = nome_cinema;
+		this.lista = new LinkedList <Proiezione> ();
 	}
 	
 	public Palinsesto (String [] dati) {
-		nome_cinema = "Cinemax";
-		lista = new LinkedList <Proiezione> ();	// istanziare la lista di proiezioni
+		this.nome_cinema = "Cinemax";
+		this.lista = new LinkedList <Proiezione> ();	// istanziare la lista di proiezioni
 		Proiezione pro;
 		for (String tmp : dati) {				// un sottoelemento "tmp" dell'array "dati" contiene una stringa con dati di una proiezione
 			pro = new Proiezione (tmp);			// chiamare il costruttore Proiezione (String dati), che istanzia una proiezione con tutti i dati contenuti in una unica stringa
@@ -33,14 +39,20 @@ public class Palinsesto {
 		lista.add(pro);
 	}
 	
-	public Proiezione cercaProiezione () {		// cercare la proiezione con la data odierna
-		Data oggi = new Data ();				// data odierna
+	public Palinsesto cercaProiezione () {										// cercare la proiezione con la data odierna
+		Palinsesto lista_oggi = new Palinsesto ("Cinemax oggi");
+		Data oggi = new Data ();												// data odierna
 		for (Proiezione tmp : lista)
 			if (tmp.getData().equals(oggi))
-				return tmp;
-		return null;
+				lista_oggi.aggiungiProiezione(tmp);
+		return lista_oggi;
 	}
-	
+
+	@Override
+	public Iterator<Proiezione> iterator() {
+		return lista.iterator();
+	}
+
 	@Override
 	public String toString () {
 		String ris = "";
