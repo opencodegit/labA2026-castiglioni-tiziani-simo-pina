@@ -1,2 +1,2 @@
 Hello
-[JAR](autori.txt)
+[JAR](/autori.txt)
