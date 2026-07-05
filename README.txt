@@ -1,2 +1,2 @@
 Hello
-<a href="">Download</a>
+[GitHub Pages](https://pages.github.com/)
